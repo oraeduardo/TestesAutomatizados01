@@ -8,6 +8,9 @@ import tests.factory.FinancingFactory;
 
 public class FinancingTests {
 
+	//Video da correção
+	//https://youtu.be/EsfLKHOy_rg
+	
 	//deve criar o objeto com os dados corretos quando os dados forem validos
 	//must create the object with the correct data when the data is valid
 	
@@ -18,11 +21,15 @@ public class FinancingTests {
 		Double income = 2000.0;
 		Integer months = 80;
 		
-		Double expectedValue = totalAmount;
+		Double expectedTotalAmount = totalAmount;
+		Double expectedIncome = income;
+		Integer expectedMonths = months;
 		
 		Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
 		
-		Assertions.assertEquals(expectedValue, f1.getTotalAmount());
+		Assertions.assertEquals(expectedTotalAmount, f1.getTotalAmount());
+		Assertions.assertEquals(expectedIncome, f1.getIncome());
+		Assertions.assertEquals(expectedMonths, f1.getMonths());
 		
 	}
 	
@@ -51,10 +58,10 @@ public class FinancingTests {
 		Double income = 2000.0;
 		Integer months = 80;
 		
-		Double expectedValue = totalAmount;
+		Double expectedValue = 90000.0;
 		
 		Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
-		f1.setTotalAmount(totalAmount);
+		f1.setTotalAmount(90000.0);
 		
 		Assertions.assertEquals(expectedValue, f1.getTotalAmount());
 	}
@@ -69,9 +76,8 @@ public class FinancingTests {
 		Double income = 2000.0;
 		Integer months = 80;
 		
-		Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
-		
 		Assertions.assertThrows(IllegalArgumentException.class,() -> {
+			Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
 			f1.setTotalAmount(120000.0);
 		});
 	}
@@ -86,10 +92,10 @@ public class FinancingTests {
 		Double income = 2000.0;
 		Integer months = 80;
 		
-		Double expectedValue = income;
+		Double expectedValue = 2500.0;
 		
 		Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
-		f1.setIncome(income);
+		f1.setIncome(2500.0);
 		
 		Assertions.assertEquals(expectedValue, f1.getIncome());
 	}
@@ -103,9 +109,8 @@ public class FinancingTests {
 		Double income = 2000.0;
 		Integer months = 80;
 		
-		Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
-		
 		Assertions.assertThrows(IllegalArgumentException.class,() -> {
+			Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
 			f1.setIncome(1000.0);
 		});
 	}
@@ -120,10 +125,10 @@ public class FinancingTests {
 		Double income = 2000.0;
 		Integer months = 80;
 		
-		Integer expectedValue = months;
+		Integer expectedValue = 100;
 		
 		Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
-		f1.setMonths(months);
+		f1.setMonths(100);
 		
 		Assertions.assertEquals(expectedValue, f1.getMonths());
 	}
@@ -138,9 +143,8 @@ public class FinancingTests {
 		Double income = 2000.0;
 		Integer months = 80;
 		
-		Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
-		
 		Assertions.assertThrows(IllegalArgumentException.class,() -> {
+			Financing f1 = FinancingFactory.createFinancing(totalAmount, income, months);
 			f1.setMonths(20);
 		});
 	}
